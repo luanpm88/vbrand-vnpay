@@ -232,6 +232,9 @@ class VnpayController extends BaseController
                                 $invoice->checkout($vnpay->gateway, function () {
                                     return new \Acelle\Cashier\Library\TransactionVerificationResult(\Acelle\Cashier\Library\TransactionVerificationResult::RESULT_DONE);
                                 });
+
+                                return redirect()->away(Billing::getReturnUrl());
+
                                 $Status = 1; // Trạng thái thanh toán thành công
                             } else {
                                 $Status = 2; // Trạng thái thanh toán thất bại / lỗi
